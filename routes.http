@@ -1,5 +1,31 @@
-### Get HelloWorld
-GET http://127.0.0.1:5000 
+@url = http://127.0.0.1:5000
 
-### Get About
-GET http://127.0.0.1:5000/about 
+### Create tasks
+# @name create
+POST {{url}}/tasks 
+content-type: application/json
+
+{
+  "title": "Task Example",
+  "description": "Any example task"
+}
+
+### Get tasks
+GET {{url}}/tasks 
+
+### Get task by id
+GET {{url}}/tasks/{{create.response.body.id}}
+
+### Update task by id
+PUT {{url}}/tasks/{{create.response.body.id}}
+content-type: application/json
+
+{
+  "title": "Task Example",
+  "description": "Any example task updated",
+  "completed": true
+}
+
+### Delete task by id
+DELETE {{url}}/tasks/{{create.response.body.id}}
+content-type: application/json
