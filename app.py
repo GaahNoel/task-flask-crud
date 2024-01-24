@@ -29,7 +29,7 @@ def get_task(id):
   for task in tasks:
     if find_task_condition(task):
       return jsonify(task.to_dictionary())
-  return jsonify("Not found"), 404
+  return jsonify({"message": "Not found"}), 404
 
 
 @app.route("/tasks/<uuid:id>", methods=["PUT"])
@@ -42,7 +42,7 @@ def update_task(id):
       break
 
   if task == None:
-    return jsonify("Not found"), 404
+    return jsonify({"message": "Not found"}), 404
 
   data = request.get_json()
   task.title = data["title"]
@@ -62,7 +62,7 @@ def delete_task(id):
       break
 
   if task == None:
-    return jsonify("Not found"), 404
+    return jsonify({"message": "Not found"}), 404
 
   return jsonify(list_tasks())
 
